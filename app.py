@@ -54,7 +54,7 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-        
+
     def __repr__(self):
         return self.username
 
@@ -177,4 +177,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(threaded=True)
