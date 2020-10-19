@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form class="input-group mb-4" method="POST">
+  {{ form.hidden_tag() }}
+  {{ form.task(class="form-control", type="search", placeholder= 'Hi, ' + current_user.f_name + '! What wii you do today?') }}
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+
+{% for todo in incomplete_todo %}
+<div class="card mb-2 border border-primary">
+  <div class="card-body">
+    <a href="{{ url_for('complete', id=todo.id) }}"><i class="fas fa-check text-primary pr-2"></i></a>
+    {{ todo.task }}
+    <a href="{{ url_for('delete',  id=todo.id) }}"><i class="fas fa-trash text-danger float-right"></i></a>
+  </div>
+</div>
+{% endfor %}
+
+<hr class="text-primary mb-4">
+
+{% for todo in complete_todo %}
+<div class="card mb-2 border border-success">
+  <div class="card-body">
+    <a href="{{ url_for('uncomplete', id=todo.id) }}"><i class="fas fa-check text-success pr-2"></i></a>
+    <del>{{ todo.task }}</del>
+    <a href="{{ url_for('delete',  id=todo.id) }}"><i class="fas fa-trash text-danger float-right"></i></a>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

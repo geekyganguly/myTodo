@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="POSt">
+  {{ form.hidden_tag() }}
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+        {{ form.f_name(class='form-control', type='text') }}
+        {{ form.f_name.label(class='form-label') }}
+        {% for error in form.f_name.errors %}
+          <div class="invalid-feedback">[{{ error }}]</div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        {{ form.l_name(class='form-control', type='text') }}
+        {{ form.l_name.label(class='form-label') }}
+        {% for error in form.l_name.errors %}
+          <div class="invalid-feedback">[{{ error }}]</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    {{ form.email(class='form-control', type='email') }}
+    {{ form.email.label(class='form-label') }}
+    {% for error in form.email.errors %}
+      <div class="invalid-feedback">[{{ error }}]</div>
+    {% endfor %}
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    {{ form.password(class='form-control', type='password') }}
+    {{ form.password.label(class='form-label') }}
+    {% for error in form.password.errors %}
+      <div class="invalid-feedback">[{{ error }}]</div>
+    {% endfor %}
+  </div>
+
+  <!-- Repeat Password input -->
+  <div class="form-outline mb-4">
+    {{ form.cnf_password(class='form-control', type='password') }}
+    {{ form.cnf_password.label(class='form-label') }}
+    {% for error in form.password.errors %}
+      <div class="invalid-feedback">[{{ error }}]</div>
+    {% endfor %}
+  </div>
+
+  <!-- Submit button -->
+  {{ form.submit(class="btn btn-primary btn-block", type='submit') }}
+</form>
+
+{% endblock %}
